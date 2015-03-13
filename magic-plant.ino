@@ -7,10 +7,14 @@
 #define STARTUP_DELAY 1000
 #define MAX_DELAY_SPEED  100
 
-int potPin = A4;
-int potVal = 0;
+int potHuePin = A4;
+float potHueVal = 0;
 int hue = 0;
+
+//int potBrightnessPin = A2;
+float potBrightnessVal = 250;
 int brightness = 250;
+
 int delayspeed = MAX_DELAY_SPEED;
 
 unsigned long lastUpdateTime = 0;
@@ -27,15 +31,17 @@ void setup() {
 
 void loop() {
   // between 0.0 and 1.0, takes into account that we are on the 3.3V rail
-  potVal = (analogRead(potPin) * (1 / (1023.0 * (3.3 / 5.0))));
-  hue = (int)floor(potVal * 255);
+  potHueVal = (analogRead(potHuePin) * (1 / (1023.0 * (3.3 / 5.0))));
+  hue = (int)floor(potHueVal * 255);
   
   if (hue >= 255) {
     hue = 0;
   }
   
   //delayspeed = (MAX_DELAY_SPEED / 256) * (int)floor(potVal);
-  
+//  potBrightnessVal = (analogRead(potBrightnessPin) * (1 / (1023.0 * (3.3 / 5.0))));
+//  brightness = (int)floor(potBrightnessVal * 255);
+//  
   if (brightness >= 255) {
     brightness = 0;
   }
