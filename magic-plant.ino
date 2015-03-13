@@ -11,10 +11,12 @@ int potHuePin = A4;
 float potHueVal = 0;
 int hue = 0;
 
-//int potBrightnessPin = A2;
-float potBrightnessVal = 250;
+int potBrightnessPin = A2;
+float potBrightnessVal = 0;
 int brightness = 250;
 
+int potDelayPin = A6;
+float potDelayVal = 0;
 int delayspeed = MAX_DELAY_SPEED;
 
 unsigned long lastUpdateTime = 0;
@@ -38,13 +40,15 @@ void loop() {
     hue = 0;
   }
   
-  //delayspeed = (MAX_DELAY_SPEED / 256) * (int)floor(potVal);
-//  potBrightnessVal = (analogRead(potBrightnessPin) * (1 / (1023.0 * (3.3 / 5.0))));
-//  brightness = (int)floor(potBrightnessVal * 255);
-//  
+  potBrightnessVal = (analogRead(potBrightnessPin) * (1 / (1023.0 * (3.3 / 5.0))));
+  brightness = (int)floor(potBrightnessVal * 255);
+  
   if (brightness >= 255) {
     brightness = 0;
   }
+
+  potDelayVal = (analogRead(potDelayPin) * (1 / (1023.0 * (3.3 / 5.0))));
+//  delayspeed = (int)floor(potDelayVal * 255);
 
   if (millis() - lastUpdateTime > delayspeed) {
     lastUpdateTime = millis();
