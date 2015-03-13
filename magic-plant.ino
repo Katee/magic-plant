@@ -13,7 +13,7 @@ int hue = 0;
 
 int potBrightnessPin = A2;
 float potBrightnessVal = 0;
-int brightness = 250;
+int brightness = 240;
 
 int potDelayPin = A6;
 float potDelayVal = 0;
@@ -39,13 +39,13 @@ void loop() {
   if (hue >= 255) {
     hue = 0;
   }
-  
-  potBrightnessVal = (analogRead(potBrightnessPin) * (1 / (1023.0 * (3.3 / 5.0))));
-  brightness = (int)floor(potBrightnessVal * 255);
-  
-  if (brightness >= 255) {
-    brightness = 0;
-  }
+
+//  potBrightnessVal = (analogRead(potBrightnessPin) * (1 / (1023.0 * (3.3 / 5.0))));
+//  brightness = (int)floor(potBrightnessVal * 255);
+//  
+//  if (brightness >= 240) {
+//    brightness = 240;
+//  }  
 
   potDelayVal = (analogRead(potDelayPin) * (1 / (1023.0 * (3.3 / 5.0))));
 //  delayspeed = (int)floor(potDelayVal * 255);
@@ -61,7 +61,6 @@ void loop() {
 
 // a chase through colors
 void chase(unsigned long currentStep) {
-  int brightnessDiff = 16;
   int hueOffset = 70; // The value to add to Hue to build the spectrum
   int hueDiff = hueOffset / NUM_LEDS;
   int valueHolder [NUM_LEDS];
